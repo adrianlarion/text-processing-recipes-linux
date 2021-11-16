@@ -4,63 +4,63 @@ Featuring: `tr, cat, tac, sort, shuf, seq, pr, paste, fmt, cut, nl, split, cspli
 
 # Basic Regex.
 
-### Literal. Matches 'hello'
+#### Literal. Matches 'hello'
 `hello`
 
-### Any single character.
+#### Any single character.
 `.`
 
-### Two any single characters
+#### Two any single characters
 `..`
 
-### Multiple specific characters. 'a' or 'b' or 'c' 
+#### Multiple specific characters. 'a' or 'b' or 'c' 
 `[abc]`
 
-### Character range. All characters between a-z.
+#### Character range. All characters between a-z.
 `[a-z]` 
 
-### Multiple ranges.All between a-z and A-Z.
+#### Multiple ranges.All between a-z and A-Z.
 `[a-zA-Z]`
 
-### Ranges + extra characters. Chars from 1-9 and 'a','b','c'
+#### Ranges + extra characters. Chars from 1-9 and 'a','b','c'
 `[1-9abc]`
 
-### Negated chars. Any char that is NOT 'a', 'b', or 'c'
+#### Negated chars. Any char that is NOT 'a', 'b', or 'c'
 `[^abc]` 
 
-### Negated char ranges. Any char NOT between a-z.
+#### Negated char ranges. Any char NOT between a-z.
 `[^a-z]`
 
-### * multiplier. Any char zero or more times. Works on the preceding ITEM.
+#### * multiplier. Any char zero or more times. Works on the preceding ITEM.
 `.*`
 
-### * multiplier again. Char 'a', followed by char 'b' (preceding item) zero or more times. This is how all multipliers work.
+#### * multiplier again. Char 'a', followed by char 'b' (preceding item) zero or more times. This is how all multipliers work.
 `ab*`
 
-### ? multiplier. Any char zero or one times.
+#### ? multiplier. Any char zero or one times.
 `.?`
 
-### + multiplier. Any char one or more times.
+#### + multiplier. Any char one or more times.
 `.+`
 
-### Numbered multiplier. Character 'l' five times. ('lllll')
+#### Numbered multiplier. Character 'l' five times. ('lllll')
 `l{5}`
 
-### Numbered range multiplier. Char 'a' between 1-5 times ('a', 'aa','aaa', etc)
+#### Numbered range multiplier. Char 'a' between 1-5 times ('a', 'aa','aaa', etc)
 `a{1-5}`
 
-### Open ended numbered range multiplier. Char 'a' at least 2 times. 
+#### Open ended numbered range multiplier. Char 'a' at least 2 times. 
 `a{2,}` 
 
-### Greedy matching (default). From 'hello you loving kool kaizer king' will match 'llo you loving kool kaizer k'
+#### Greedy matching (default). From 'hello you loving kool kaizer king' will match 'llo you loving kool kaizer k'
 `l.*k`
 
-### Lazy matching. From 'hello you loving kool kaizer king' will match 'llo you loving k' and 'l k'. In most cases this is the desired behaviour.
+#### Lazy matching. From 'hello you loving kool kaizer king' will match 'llo you loving k' and 'l k'. In most cases this is the desired behaviour.
 `l.*?k`
 
 
 
-### Shorthand char classes:
+#### Shorthand char classes:
 ```
 \s - whitespace (space, newline, tab, etc)
 \S - oposito of \s (not whitespace)
@@ -70,33 +70,33 @@ Featuring: `tr, cat, tac, sort, shuf, seq, pr, paste, fmt, cut, nl, split, cspli
 \W - not word char
 ```
 
-### ^ beginning of line. Beginning of line followed by 'h', 'e','l','l' and 'o'
+#### ^ beginning of line. Beginning of line followed by 'h', 'e','l','l' and 'o'
 `^hello` 
 
-### $ end of line. 'b','y','e' followed by end of line.
+#### $ end of line. 'b','y','e' followed by end of line.
 `bye$` 
 
-### \b - beginning or end of word. Will match ' FOO' at end of line but not 'BARFOO' at end of line. 
+#### \b - beginning or end of word. Will match ' FOO' at end of line but not 'BARFOO' at end of line. 
 `\bFOO$`
 
 
-### Group in parenthesis. Back reference it by '\1'. 'foo' is group 1. Matches 'foo bar foo' (foo, followed by bar followed by first group which is 'foo')
+#### Group in parenthesis. Back reference it by '\1'. 'foo' is group 1. Matches 'foo bar foo' (foo, followed by bar followed by first group which is 'foo')
 `(foo) bar \1`
 
-### Alternation. 'foo' or 'bar'
+#### Alternation. 'foo' or 'bar'
 `foo|bar` 
 
 
 
 # General Tools
 
-### Replace ':' with tabs in the output 
+#### Replace ':' with tabs in the output 
 `cat /etc/passwd | tr ':' '\t'`
 
-### Delete unwanted chars ('#')
+#### Delete unwanted chars ('#')
 `echo "hello # world" | tr -d '#'`
 
-### replace all but the alphanumeric chars with `_`
+#### replace all but the alphanumeric chars with `_`
 `cat main.py | tr -c '[:alnum:]\n' '_'
 ```
 ___usr_bin_python3
@@ -106,106 +106,106 @@ for_i_in_range_0_10__
 ____print_str_i__end___r__
 ```
 
-### Convert all to uppercase:
+#### Convert all to uppercase:
 `cat main.py | tr 'a-z' 'A-Z'`
 
-### Convert all to lowercase:
+#### Convert all to lowercase:
 `cat main.py | tr 'A-Z' 'a-z'`
 
 
-### Swap uppercase/lowercase
+#### Swap uppercase/lowercase
 ```
 tr 'a-zA-Z' 'A-Za-z' <file.txt
 ```
 
 
-### Replace all digits with empty space. 
+#### Replace all digits with empty space. 
 `cat main.py | tr '0-9' ' '`
 
 
-### Replace all punctuation with empty space. Braces, parenthesis, etc. 
+#### Replace all punctuation with empty space. Braces, parenthesis, etc. 
 `cat main.py | tr '[:punct:]' ' '`
 
 
-### Remove repeated spaces (keep just a single space between words)
+#### Remove repeated spaces (keep just a single space between words)
 `cat file | tr -s ' '`
 
 
-### Sort using human-numeric-sort (will order: '1,10,15,100' ad not '1,10,100,15')
+#### Sort using human-numeric-sort (will order: '1,10,15,100' ad not '1,10,100,15')
 `sort -h file`
 
-### Sort and reverse
+#### Sort and reverse
 `sort -r file`
 
-### Random sort (shufle lines)
+#### Random sort (shufle lines)
 `sort -R file`
 
-### Sort in place (OVERWRITE file with sorted lines). Don't print anything on stdout.
+#### Sort in place (OVERWRITE file with sorted lines). Don't print anything on stdout.
 `sort file -o file`
 
-### Sort and remove duplicate lines
+#### Sort and remove duplicate lines
 `sort -u file`
 
-### Get N random lines from file
+#### Get N random lines from file
 `shuf -n2 file`
 
-### Get N random lines from file, with repetition allowed (one line may be present multiple times)
+#### Get N random lines from file, with repetition allowed (one line may be present multiple times)
 `shuf -rn2 file `	
 
-### Generate 3 rand numbers between 1 and 20 (no repetition)
+#### Generate 3 rand numbers between 1 and 20 (no repetition)
 `shuf -n3 -i 1-20`
 
 
-### Generate 3 rand numbers between 1-20 with repetition
+#### Generate 3 rand numbers between 1-20 with repetition
 `shuf -rn3 -i 1-20`
 
 
-### Generate 3 rand negative numbers between -10 and 0 with repetition ('-r' is for repetition. remove it for no repetition)
+#### Generate 3 rand negative numbers between -10 and 0 with repetition ('-r' is for repetition. remove it for no repetition)
 `seq -10 0 | shuf -rn3`
 
 
-### Generate 3 rand floats (0.1 step) between 0-5. Add '-' for repetition ('-rn3')
+#### Generate 3 rand floats (0.1 step) between 0-5. Add '-' for repetition ('-rn3')
 `seq 0 0.1 5 | shuf -n3`
 
 
-### Generate 3 rand numbers and sort them (numerical sort)
+#### Generate 3 rand numbers and sort them (numerical sort)
 `shuf -n3 -i 0-100 | sort -n`
 
 
-### Get 2 random words from word list provided after '-e'
+#### Get 2 random words from word list provided after '-e'
 `shuf -n2 -e red blue green orange`
 
-### Return two random file names from current dir
+#### Return two random file names from current dir
 `shuf -n2 -e * `
 
-### Generate random IP. (replace newlines with dots using 'tr')
+#### Generate random IP. (replace newlines with dots using 'tr')
 `shuf -n4 -i 0-255 | tr '\n' '.'`
 
-### Generate a sequenco of numbers 1 to 10
+#### Generate a sequenco of numbers 1 to 10
 `seq 10`
 
-### Generate sequence of numbers between 5-15
+#### Generate sequence of numbers between 5-15
 `seq 5 15`
 
-### Generate sequence of numbers between 10-20, skipping every second number (10,12,14,etc)
+#### Generate sequence of numbers between 10-20, skipping every second number (10,12,14,etc)
 `seq 10 2 20`
 
-### Generate a descending sequence of numbers from 10 to 0
+#### Generate a descending sequence of numbers from 10 to 0
 `seq 10 -1 0`
 
-### Generate a sequence of numbers separated by space
+#### Generate a sequence of numbers separated by space
 `seq -s' ' 10`
 
-### Generate sequence of numbers and pad them with 0 (01,02,etc)
+#### Generate sequence of numbers and pad them with 0 (01,02,etc)
 `seq -w 10`
 
-### Generate sequence of numbers with custom formatting (using printf formatting)
+#### Generate sequence of numbers with custom formatting (using printf formatting)
 `seq -f'%.5f' 10`
 
-### Double space between lines (if no empty lines add one. If 2 empty lines - make them 4)
+#### Double space between lines (if no empty lines add one. If 2 empty lines - make them 4)
 `pr -dt file`
 
-### Gen numbers and put them on 3 columns, separated by tabs:
+#### Gen numbers and put them on 3 columns, separated by tabs:
 `seq 9 | pr -3ts`
 <br>
 ```
@@ -214,7 +214,7 @@ tr 'a-zA-Z' 'A-Za-z' <file.txt
 3	6	9
 ```
 
-### Gen numbers, put them on 3 cols, separated by commas:
+#### Gen numbers, put them on 3 cols, separated by commas:
 `seq 9 | pr -3ts, `
 <br>
 ```
@@ -223,7 +223,7 @@ tr 'a-zA-Z' 'A-Za-z' <file.txt
 3,6,9
 ```
 
-### Gen numbers, put them on 3 cols ACROSS (from left to right, not top to bottom), separated by commas, :
+#### Gen numbers, put them on 3 cols ACROSS (from left to right, not top to bottom), separated by commas, :
 `seq 9 | pr -3ats, `
 ```
 1,2,3
@@ -231,7 +231,7 @@ tr 'a-zA-Z' 'A-Za-z' <file.txt
 7,8,9
 ```
 
-### Put the contents of files each on a column, separated by tabs. Works well with files with short lines.
+#### Put the contents of files each on a column, separated by tabs. Works well with files with short lines.
 `pr -mts file1 file2`
 ```	
 10	100
@@ -244,7 +244,7 @@ one	one and tow
 	extra3
 ```
 
-### Generate rand nums from: 1-10, 1-100. Put them on columns separated by tabs.
+#### Generate rand nums from: 1-10, 1-100. Put them on columns separated by tabs.
 `pr -mts <(shuf -n10 -i 1-10) <(shuf -n10 -i 1-100)`
 <br>
 ```
@@ -261,7 +261,7 @@ one	one and tow
 8	53
 ```
 
-### Generate 100 sequential numbers. Put them on 5 columns separated by tabs ('t' stands for no header (no extra whitespace at the bottom usually)
+#### Generate 100 sequential numbers. Put them on 5 columns separated by tabs ('t' stands for no header (no extra whitespace at the bottom usually)
 `seq 100 | pr -5t`
 <br>
 ```
@@ -288,12 +288,12 @@ one	one and tow
 20	      40	    60		  80		100
 ```
 
-### Another way to put contents of a file on columns (across), separated by tabs. One column for one dash (3 cols total)
+#### Another way to put contents of a file on columns (across), separated by tabs. One column for one dash (3 cols total)
 ```
 paste - - - <file 
 ```
 
-### Another to generate a sequence of nums on 3 colums with custom separator
+#### Another to generate a sequence of nums on 3 colums with custom separator
 `seq 20 | paste - - - -d,`
 ```
 
@@ -306,11 +306,11 @@ paste - - - <file
 19,20,
 ```
 
-### Put all lines on a single line, separated by custom delimiter (comma). Each file lines go on a separate line (output is 3 lines)
+#### Put all lines on a single line, separated by custom delimiter (comma). Each file lines go on a separate line (output is 3 lines)
 `paste -sd, file1 file2 file3`
 
 
-### Break lines at max width. Break if possible at spaces (don't put '-s' if you want the breaks to occur wherever). Will cut words if they are more than max width ('-w')
+#### Break lines at max width. Break if possible at spaces (don't put '-s' if you want the breaks to occur wherever). Will cut words if they are more than max width ('-w')
 `paste -sw5 file`
 ```
 Lorem
@@ -334,7 +334,7 @@ d.
 The 
 End.
 ```
-### Break lines at max width. Will keep words even if they exceed max width.
+#### Break lines at max width. Will keep words even if they exceed max width.
 `fmt -w3 file`
 ```
 
@@ -355,7 +355,7 @@ The
 End.
 ```
 
-### Show file contents with line numbering
+#### Show file contents with line numbering
 `cat -n file`
 ```
      1	Lorem ipsum dolor amet. I am first.
@@ -364,54 +364,54 @@ End.
 
 ```
 
-### Show file contents. Squeeze empty lines (to at most one line)
+#### Show file contents. Squeeze empty lines (to at most one line)
 `cat -s file`
 
-### Show file contents. Number only non-empty lines
+#### Show file contents. Number only non-empty lines
 `cat -b file`
 
 
-### Display file lines in reverse
+#### Display file lines in reverse
 `tac file`
 
 
-### Reverse text.
+#### Reverse text.
 `echo "hello" | rev`
 ```
 olleh
 ```
 
-### Display first 5 lines
+#### Display first 5 lines
 `head -n 5 file`
 
-### Display all except last N lines
+#### Display all except last N lines
 `head -n -5 file`
 
 
-### Display a column (the second). Use custom separator.
+#### Display a column (the second). Use custom separator.
 `echo "hello world of linux" | cut -f2 -d' '`
 ```
 
 world
 ```
 
-### Display a column range. Use custom separator.
+#### Display a column range. Use custom separator.
 `echo "hello world of linux" | cut -f2-4 -d' '`
 ```
 world of linux
 ```
 
-### Display column range (from beginning to third). (use -f3- to display from third to end)
+#### Display column range (from beginning to third). (use -f3- to display from third to end)
 `echo "hello world of linux" | cut -f-3 -d' '`
 ```
 hello world of
 ```
 
-### Number lines. Increase count by 3 at each line (1  line1, 4  line2, etc)
+#### Number lines. Increase count by 3 at each line (1  line1, 4  line2, etc)
 `nl -i3 file`
 
 
-### Number lines. Custom string after line number.
+#### Number lines. Custom string after line number.
 `nl -s'--' file`
 ```
 
@@ -425,105 +425,105 @@ hello world of
         
 ```
 
-### Number lines. Start counting from 5.
+#### Number lines. Start counting from 5.
 `nl -v5 file`
 
-### Split file into smaller files. Each smaller file has at most 100 lines. (WARNING - it may create lots of files in dir where cmd is run) 
+#### Split file into smaller files. Each smaller file has at most 100 lines. (WARNING - it may create lots of files in dir where cmd is run) 
 `split -l10 file`
 
 
-### Generate 100 rand nums. Put first 10 in one file, second 10 in another file, etc. File names start with 'x' - eg 'xai'. 
+#### Generate 100 rand nums. Put first 10 in one file, second 10 in another file, etc. File names start with 'x' - eg 'xai'. 
 `seq 100 | split -l10`
 
-### Split file in smaller files by byte count. (eg: 'xai' has content 'abcde', 'xaj' has 'fghij', etc). Each smaller file has 5 bytes at most. 
+#### Split file in smaller files by byte count. (eg: 'xai' has content 'abcde', 'xaj' has 'fghij', etc). Each smaller file has 5 bytes at most. 
 `split -b5 file`
 
-### Split file into 3 (approximatively) equal chunks. WILL SPLIT LINES.
+#### Split file into 3 (approximatively) equal chunks. WILL SPLIT LINES.
 `split -n3 file`
 
 
-### Split file into 3 (approx.) equal chunks. Don't split lines (in the middle). 
+#### Split file into 3 (approx.) equal chunks. Don't split lines (in the middle). 
 `split -nl/3 file`
 
 
-### Split file into 8 and display 4th chunk on stdout. Will cut lines. No files are generated.
+#### Split file into 8 and display 4th chunk on stdout. Will cut lines. No files are generated.
 `split -n4/8 file`
 
 
-### Split file into 8 and display 4th chunk on stdout. Lines are kept intact. No files generated.
+#### Split file into 8 and display 4th chunk on stdout. Lines are kept intact. No files generated.
 `split -nl/4/8 file`
 
 
-### Split file into 3 chunks. Don't split lines. Use numeric suffixes for generated files ('x01, x02,etc')
+#### Split file into 3 chunks. Don't split lines. Use numeric suffixes for generated files ('x01, x02,etc')
 `split -dnl/3 file`
 
-### Split file into 3 chunks. Use custom prefix for generated filenames ('sub_aa,sub_bb')
+#### Split file into 3 chunks. Use custom prefix for generated filenames ('sub_aa,sub_bb')
 `split -nl/3 file sub_`
 
-### Split file into 3 cunks. Use custom prefix AND numeric suffixes ('sub_00, sub_01')
+#### Split file into 3 cunks. Use custom prefix AND numeric suffixes ('sub_00, sub_01')
 `split -dnl/3 file sub_`
 
 
-### Split file at 5th line into 2 subfiles. Subfile 1 ('xx00')wil have 4 lines. Subfile 2 ('xx01') will have the rest.
+#### Split file at 5th line into 2 subfiles. Subfile 1 ('xx00')wil have 4 lines. Subfile 2 ('xx01') will have the rest.
 `csplit file 5`
 
-### Split file at line matching regex into 2 subfiles. Line matching regex will be in second file.
+#### Split file at line matching regex into 2 subfiles. Line matching regex will be in second file.
 `csplit file '/my line/' `
 
 # SED Section.
 
 
-### Print one line
+#### Print one line
 `sed -n '10p' myfile.txt` 
 
-### Do replacement on all lines except line 5
+#### Do replacement on all lines except line 5
 `sed '5!/s/foo/bar/' file.txt`
 
-### Do replacement on lines matching regex (eg: lines starting with 'hello')
+#### Do replacement on lines matching regex (eg: lines starting with 'hello')
 `sed '/^hello/ s/h/H/' file.txt ` 
 
 
 
-### Do replacement from line 5 to end of file
+#### Do replacement from line 5 to end of file
 `sed '5,$ s/foo/bar/' file.txt `
 
 
-### Delete empty files
+#### Delete empty files
 `sed  '/^$/d' file`
 
 
 
-### Print lines between two regex matches
+#### Print lines between two regex matches
 `sed -nE '/^foo/,/^bar/p' file.txt`
 
-### Use custom delimiters to make it easy for some strings that contain slashes
+#### Use custom delimiters to make it easy for some strings that contain slashes
 `sed 's_/bin/bash_/bin/sh_' file.txt ` 
 
-### Custom delimiters for regex address combined with the classical delimiter for substitute command (you could also use there a custom delimiter). Useful for paths.
+#### Custom delimiters for regex address combined with the classical delimiter for substitute command (you could also use there a custom delimiter). Useful for paths.
 `sed '\_/bin/bash_s/grep/egrep/' file.txt`
 * or using the same delimiter for clarity `sed '\_/bin/bash_s_grep_egrep_' file.txt`
 
-### Insert a space between lowercase/Uppercase characters using & (which represents the regex match)
+#### Insert a space between lowercase/Uppercase characters using & (which represents the regex match)
 `sed 's/[a-zA-Z]/& /g' file.txt `
 
-### Keep the first word of every line (where word is defined by alphanumeric chars + underscores for simplicity sake)
+#### Keep the first word of every line (where word is defined by alphanumeric chars + underscores for simplicity sake)
 `sed -E 's_[a-zA-Z0-9_]+.*_\1_' file.txt `
 
 
-### Switch the first two words 
+#### Switch the first two words 
 `sed -E 's_([a-zA-Z0-9_]*) ([a-zA-Z0-9_]*)_\2 \1_' f1`
 
 
-### Remove duplicate words separated by a single space (but not triplicate)
+#### Remove duplicate words separated by a single space (but not triplicate)
 `sed -E 's_([a-zA-Z0-9_]+) \1_\1_ig' f1`
 
-### Search and replace for pattern, write just the lines with the replacements in a new file
+#### Search and replace for pattern, write just the lines with the replacements in a new file
 `sed  's_foo_bar_w replaced.txt' file.txt  `
 
-### Multiple replacements
+#### Multiple replacements
 `sed -e 's_foo_bar_' -e 's_hello_HELLO_' file.txt `
 
-### Multiple replacements by using a sed script
+#### Multiple replacements by using a sed script
 ```
 #!/usr/bin/sed -f
 s/a/A/
@@ -533,42 +533,42 @@ s/hello/HELLO/
 * Make executable with `chmod +x myscript.sed`, call with `./myscript.sed myfile.txt`
 
 
-### Multiple commands using the ; operator which in theory concatenates commands (WARNING! It won't work as expected with certain commands such as 'r' or 'w'. Use a sed script instead OR put the command dealing with filenames last). Print line 10 and insert before line 5. 
+#### Multiple commands using the ; operator which in theory concatenates commands (WARNING! It won't work as expected with certain commands such as 'r' or 'w'. Use a sed script instead OR put the command dealing with filenames last). Print line 10 and insert before line 5. 
 `sed '10p;5i\"INSERTED BEFORE LINE 5" file.txt ` 
 
 
-### Remove comments between lines starting with these two keywords. Empty lines will be put there instead
+#### Remove comments between lines starting with these two keywords. Empty lines will be put there instead
 `sed -E '/start/,/end/ s/#.*//' file.txt `
 
-### Delete comments starting with # (no empty lines left behind)
+#### Delete comments starting with # (no empty lines left behind)
 `sed -E '/^#/d' f1`
 
-### Insert an empty line after pattern  (after each line containing comment in this case)
+#### Insert an empty line after pattern  (after each line containing comment in this case)
 `sed '/^#/G' file.txt `
 
 
-### View lines minus lines between line starting with pattern and end of file 
+#### View lines minus lines between line starting with pattern and end of file 
 `sed  '/start/,$ d' file.txt `
 
-### View lines except lines between line starting with pattern and line ending with pattern
+#### View lines except lines between line starting with pattern and line ending with pattern
 `sed -rn '/start/,/end/ !p' file.txt `
 
-### Print until you encounter pattern then quit
+#### Print until you encounter pattern then quit
 `sed  '/start/q' file.txt `
 
-### Insert contents of file after a certain line
+#### Insert contents of file after a certain line
 `sed  '5 r newfile.txt' file.txt `
 
-### Append text after lines containing regex (AFTER FOO)
+#### Append text after lines containing regex (AFTER FOO)
 `sed '/foo/a\AFTER FOO' file.txt `
 
-### Insert text after lines containing regex (BEFORE FOO)
+#### Insert text after lines containing regex (BEFORE FOO)
 `sed '/foo/i\BEFORE FOO' file.txt `
 
-### Change line containing regex match
+#### Change line containing regex match
 `sed '/foo/c\FOO IS CHANGED' file.txt `
 
-### Nested sed ranges with inversion. Between lines 1,100 apply actions where the pattern DOESN'T match.
+#### Nested sed ranges with inversion. Between lines 1,100 apply actions where the pattern DOESN'T match.
 ```
 #!/usr/bin/sed -f
 1,100 {
@@ -581,7 +581,7 @@ s/hello/HELLO/
 ```
 
 
-### Use nested addresses with change, insert and append to modify: the line before match, the line with match, the line after match.
+#### Use nested addresses with change, insert and append to modify: the line before match, the line with match, the line after match.
 ```
 #!/usr/bin/sed -f
 /^#/ {
@@ -595,7 +595,7 @@ c\
 
 ```
 
-### Insert new line before the first comment, after the first comment put in the contents of file and quit immediately afterwards
+#### Insert new line before the first comment, after the first comment put in the contents of file and quit immediately afterwards
 ```
 #!/usr/bin/sed -f
 /^#/ {
@@ -605,180 +605,180 @@ q
 }
 ```
 
-### Transform text 
+#### Transform text 
 `sed 'y/abc/ABC/' file.txt `
 
 
-### Copy all the comments (starting with #) to a new file
+#### Copy all the comments (starting with #) to a new file
 `sed -E '/^#/w comments.txt' file.txt `
 
-### Print every second line (substitute ~3 for third line, etc)
+#### Print every second line (substitute ~3 for third line, etc)
 `sed -n '1~2p' file.txt `
 
-### Edit file in place but also create a backup
+#### Edit file in place but also create a backup
 `sed -i.bak 's/hello/HELLO/' file.txt `
 
-### Append two extra lines after regex match
+#### Append two extra lines after regex match
  `sed -E '/^#/G G' file.txt ` 
 
 # Grep section.
 
-### Search for match (the string 'hello') in file (called generically 'file'). Display every line that matches pattern (in this case every line containing 'hello')
+#### Search for match (the string 'hello') in file (called generically 'file'). Display every line that matches pattern (in this case every line containing 'hello')
 `grep hello file`
 
-### Search for match in file and use quotes on the pattern. Not required unless you have special chars that are expanded by the shell. (in this case not required)
+#### Search for match in file and use quotes on the pattern. Not required unless you have special chars that are expanded by the shell. (in this case not required)
 `grep 'hello' file`
 
-### Search for a match in multiple files
+#### Search for a match in multiple files
 `grep hello file1 file2`
 
-### Search for match in all files in current dir (will show a warning if dirs are present too)
+#### Search for match in all files in current dir (will show a warning if dirs are present too)
 `grep hello *`
 
-### Search for a match in all files in curent dir. Don't show errors if dirs are present. (grep treats dirs just as ordinary files and tries to "read" them). '-s' is for silent. Will also skip errors regarding nonexistent files.
+#### Search for a match in all files in curent dir. Don't show errors if dirs are present. (grep treats dirs just as ordinary files and tries to "read" them). '-s' is for silent. Will also skip errors regarding nonexistent files.
 `grep -s hello *`
 
-### Search for a match in all files than end with '.py'
+#### Search for a match in all files than end with '.py'
 `grep hello *.py`
 
-### Search for match in all files in current dir. Suppress warning if dirs are present. (it searches for 'hello' in all files. 'skip' is an action passed to '-d'). Show warnings about unexisting files.
+#### Search for match in all files in current dir. Suppress warning if dirs are present. (it searches for 'hello' in all files. 'skip' is an action passed to '-d'). Show warnings about unexisting files.
 `grep -d skip hello *`
 
 
-### Case insensitive
+#### Case insensitive
 `grep -i Hello file` 
 
-### Invert search
+#### Invert search
 `grep -v hello file`
 
-### Combine options. Case insensitive AND invert search
+#### Combine options. Case insensitive AND invert search
 `grep -iv Hello file`
 
 
-### Use regex. (search for either 'year' or 'Year')
+#### Use regex. (search for either 'year' or 'Year')
 `grep '[Yy]ear' file`
 
 
-### Use basic regex (default). Match literal 'years+' in string. ('?+{|()' have no special meaning). Don't match 'years', 'yearss', 'yearsss', etc.
+#### Use basic regex (default). Match literal 'years+' in string. ('?+{|()' have no special meaning). Don't match 'years', 'yearss', 'yearsss', etc.
 `grep 'years+' file`
 
-### Use extendend regex. Match 'years', 'yearss', 'yearsss', etc. ('+' means one or more of the chars before it, in this case an 's'). '?+{|()' have special meaning.
+#### Use extendend regex. Match 'years', 'yearss', 'yearsss', etc. ('+' means one or more of the chars before it, in this case an 's'). '?+{|()' have special meaning.
 `grep -E 'years+' file`
 
-### Same as above (extended regex)
+#### Same as above (extended regex)
 `egrep 'years+' file`
 
 
-### Match whole words. Will match ' year ' but not 'goodyear'
+#### Match whole words. Will match ' year ' but not 'goodyear'
 `grep -w year file`
 
-### Match whole lines. Will match 'year' (where 'year' is the single word on a line. Won't match 'one year', 'goodyear'.
+#### Match whole lines. Will match 'year' (where 'year' is the single word on a line. Won't match 'one year', 'goodyear'.
 `grep -x year file`
 
-### Treat the search pattern literally, not as a regex. Will match the literal '[Yy]ear' but won't match 'year'.
+#### Treat the search pattern literally, not as a regex. Will match the literal '[Yy]ear' but won't match 'year'.
 `grep -F '[Yy]ear' file`
 
-### Search for multiple patterns. Match both 'year' and 'hello'.
+#### Search for multiple patterns. Match both 'year' and 'hello'.
 `grep -e hello -e year file`
 
-### Read search patterns from a file. Each pattern on a new line. Match all found patterns. 'patterns.txt' can have 'word' on one line, '[Yy]ear' on the second, etc.
+#### Read search patterns from a file. Each pattern on a new line. Match all found patterns. 'patterns.txt' can have 'word' on one line, '[Yy]ear' on the second, etc.
 `grep -f patterns.txt file`
 
-### Read search patterns from file AND from text passed to option '-e'. Match all found patterns.
+#### Read search patterns from file AND from text passed to option '-e'. Match all found patterns.
 `grep -f patterns.txt -e '[Ee]xtra' file`
 
 
-### Count matching lines for pattern (NOT matching patterns). Display a number - how many lines matched. 
+#### Count matching lines for pattern (NOT matching patterns). Display a number - how many lines matched. 
 `grep -c hello file`
 
-### Count matching lines for every file except dirs (supressed with '-s'). Display how mayn lines matched (for every file). Will show multiple files with 0 or more matches. 
+#### Count matching lines for every file except dirs (supressed with '-s'). Display how mayn lines matched (for every file). Will show multiple files with 0 or more matches. 
 `grep -sc hello *`
 
 
-### Print ONLY file names where match found (don't print the actual matches).
+#### Print ONLY file names where match found (don't print the actual matches).
 `grep -l hello *.txt`
 
 
-### Print ONLY file names where match NOT found.
+#### Print ONLY file names where match NOT found.
 `grep -L hello *.txt`
 
 
-### Search for pattern only whithin the first Nth lines. (only in the first 10 lines in the example)
+#### Search for pattern only whithin the first Nth lines. (only in the first 10 lines in the example)
 `grep -m 10 hello file`
 
-### Search for pattern whithin Nth lines for every file in current dir. Skip dirs. Note how we concatenate '-m' and '10'. We could've alse written them with a space, like '-m 10'
+#### Search for pattern whithin Nth lines for every file in current dir. Skip dirs. Note how we concatenate '-m' and '10'. We could've alse written them with a space, like '-m 10'
 `grep -sm10 hello *`
 
 
-### Print only the matched parts, without the surrounding text. Example will print 'year', 'Year', 'YEAR', etc - each an a new line
+#### Print only the matched parts, without the surrounding text. Example will print 'year', 'Year', 'YEAR', etc - each an a new line
 `grep -o [Yy]ear file`
 
 
-### Supress error messages about files not existing.
+#### Supress error messages about files not existing.
 `grep -s hello file nonexisting_file`
 
-### Print filename before each match. Eg: 'file:goodyear' (default when multiple files are searched).
+#### Print filename before each match. Eg: 'file:goodyear' (default when multiple files are searched).
 `grep -H year file`
 
 
-### Supress printing filenames before each match (even if multiple files are searched)
+#### Supress printing filenames before each match (even if multiple files are searched)
 `grep -h year file file2`
 
-### Add line number before each output line (Eg: '1:goodyear')
+#### Add line number before each output line (Eg: '1:goodyear')
 `grep -n year file`
 
-### Print both line number and file name (eg: 'file:3:goodyear'). '-H' will force to display filename even if just one file (by default not shown). '-s' suppress dir missing warns.
+#### Print both line number and file name (eg: 'file:3:goodyear'). '-H' will force to display filename even if just one file (by default not shown). '-s' suppress dir missing warns.
 `grep -nHs year *`
 
-### Also print N trailing lines AFTER matched line. (show N lines AFTER the matched line)
+#### Also print N trailing lines AFTER matched line. (show N lines AFTER the matched line)
 `grep -A 2 year file`
 
-### Also print N trailing lines BEFORE matched line. (show N lines BEFORE the matched line)
+#### Also print N trailing lines BEFORE matched line. (show N lines BEFORE the matched line)
 `grep -B 2 year file`
 
-### Print 2 lines before and 4 lines after matched line.
+#### Print 2 lines before and 4 lines after matched line.
 `grep -B2 -A4 hello file`
 
 
-### Also print N lines BEFORE and N lines AFTER matched line (eg: 2 before and 2 after)
+#### Also print N lines BEFORE and N lines AFTER matched line (eg: 2 before and 2 after)
 `grep -C 2 year file`
 
-### Force process binary files. Without this you'll get 'grep: /usr/bin/pamon: binary file matches'. (search for string 'au' in binary file)
+#### Force process binary files. Without this you'll get 'grep: /usr/bin/pamon: binary file matches'. (search for string 'au' in binary file)
 `grep -a au /usr/bin/pamon`
 
-### Exclude files that match this pattern. (eg: don't search .py or .c files)
+#### Exclude files that match this pattern. (eg: don't search .py or .c files)
 `grep --exclude=*.py --exclude=*.c year *`
 
-### Include files that match this pattern. Use in conjuction with --exclude. (exclude all .py files and then include only 'main.py' in the search)
+#### Include files that match this pattern. Use in conjuction with --exclude. (exclude all .py files and then include only 'main.py' in the search)
 `grep --exclude=*.py --include=main.py year *`
 
 
-### Search recursively in dir (go as deep as possible, searching for files). DON'T follow symlinks. No warning about searching dirs shown.
+#### Search recursively in dir (go as deep as possible, searching for files). DON'T follow symlinks. No warning about searching dirs shown.
 `grep -r hello`
 
-### Exclude dirs from searching. Useful when using '-r' to skip certain dirs, such as '.git'
+#### Exclude dirs from searching. Useful when using '-r' to skip certain dirs, such as '.git'
 `grep hello -r --exclude-dir='.git'`
 
-### Seach recursively in dir. If simlynk encountered, follow it and search the file pointed by the symlink. 
+#### Seach recursively in dir. If simlynk encountered, follow it and search the file pointed by the symlink. 
 `grep -R hello`
 
-### Print total byte count before matched lines. First line (from file, not matched line) has a count of '0'. Eg: line 1 - '0:abc', line 2 '4:def'. It shows 4 because it has counted 4 bytes until now ('abc' + newline from the first file)
+#### Print total byte count before matched lines. First line (from file, not matched line) has a count of '0'. Eg: line 1 - '0:abc', line 2 '4:def'. It shows 4 because it has counted 4 bytes until now ('abc' + newline from the first file)
 `grep -b hello file`
 
-### Search for 'hello' in files that might start with the '-' character. Without the '--' a file like '-myfile' won't be searched. WARNING - having such a file in your dir will BREAK "normal" grep functioning (eg: `grep hello *` WON'T SHOW all 'hello' lines from files. Reason is that when it encounters file '-x' it treats it as an option since it expands the `*` wildcard)
+#### Search for 'hello' in files that might start with the '-' character. Without the '--' a file like '-myfile' won't be searched. WARNING - having such a file in your dir will BREAK "normal" grep functioning (eg: `grep hello *` WON'T SHOW all 'hello' lines from files. Reason is that when it encounters file '-x' it treats it as an option since it expands the `*` wildcard)
 `grep -- hello *`
 
-### Sausage options 1. Search in binary files (text too but friendly toward binaries). Print byte count (or offset as grep calls it), force filename, ignorecase, show match only, also show line count, search recursively in this dir. Output is like 'hau/f:15:193:hello'
+#### Sausage options 1. Search in binary files (text too but friendly toward binaries). Print byte count (or offset as grep calls it), force filename, ignorecase, show match only, also show line count, search recursively in this dir. Output is like 'hau/f:15:193:hello'
 ` grep -abHionr hello`.
 
 
 # Awk section.
 
 
-### Prerequisites
+#### Prerequisites
 * Make sure you have 'gawk' installed. It has more features than the usual default 'mawk'. You can see what implementation af awk you're using by typing `man awk` and looking at the header. If you have 'mawk' just install awk with `sudo apt-get install gawk`
 
-### Intro
+#### Intro
 * Awk operates on records and fields. A record is by default a line. A field is a "word" by default. You can change how a record/field is defined by changing the field separator var (FS) and the record separator (RS).
 * You give awk some files on which to operate. Awk starts reading records (lines) from these files one by one. It splits each record (line) into fields (words). 
 * In your awk program you have code that will look like this  `/bilbo/ {print $0}`. `/bilbo/` is a pattern. `{print $0}` is an action (inside the curly braces). 
@@ -786,14 +786,14 @@ q
 * The special variable `$0` represents the whole record (line). `print` prints.
 
 
-### Note about lines/records fields/words
+#### Note about lines/records fields/words
 * Usually you'll want to keep working with records which are "lines". That is - strings delimited by newlines. I'll also be referring to records as lines to make things simpler. 
 * You can change how awk interprets records. Then records will be other things which are not "lines" (like strings separated by commas for example).  
 * The same goes for fields. Fields are strings separated by space by default. You can change this of course to have the separator be a comma or something else.
 * Because I just told you you'll know that a record is a line by default. But you could change it to something else (by changing the RS - the Record Separator). You also know that a field is a word (separated by space) by default - but you could change it by changing the FS - Field Separator. 
 
 
-### How to call awk
+#### How to call awk
 * You call it like `awk '{print $0}' file1 file2`
 * In the examples below I sometimes show the text inside '', not the full blown bash command.
 * If there are multiple files you have to use an awk script. Make a new file and put inside it:
@@ -806,14 +806,14 @@ BEGIN {print "BEGINNING"}
 * Call it with `./myscript.awk file1 file2`
 
 
-### Simple pattern
+#### Simple pattern
 
 * So you can read this awk program `/bilbo/ {print $0}` as: 
 >> for each record (line) in all the files passed to awk
 >>> if record (line) matches `/bilbo/` pattern
 >>>> print the whole record (line)
 
-### Field
+#### Field
 * How about `/bilbo/ {print $1}`? `$1` represents the first field (word) from the current record (line). `$2` is second field (word) and so on. 
 * You can read `/bilbo/ {print $1}` as:
 >> for each record (line) in all the files passed to awk
@@ -821,13 +821,13 @@ BEGIN {print "BEGINNING"}
 >>>> print the first field (word) from the record (line)
 
 
-### Pattern AND Pattern
+#### Pattern AND Pattern
 * Patterns can be more complex. Check this out `/bilbo/&&/frodo/{print "my precious"}`
 * You can read this as:
 >> On each record (line) that matches `/bilbo/` AND `/frodo/`
 >>> print the string "my precious"
 
-### Pattern OR Pattern
+#### Pattern OR Pattern
 * Check this other pattern out `/bilbo/||/frodo/{print "Is it you mister Frodo?"}`
 * You can read this as:
 >> On each record (line) that matches `/bilbo/` OR `/frodo/`
@@ -835,13 +835,13 @@ BEGIN {print "BEGINNING"}
 
 
 
-### NOT Pattern
+#### NOT Pattern
 * What about `! /frodo/ { print "Pohtatoes" }`? (note the extra spaces put there for clarity. You could also eliminate them to save typing)
 * Read it as: 
 >> On each record (line) that DOESN'T match `/frodo/`
 >>> Print "Pohtatoes"
 
-### IF Pattern present then check for Pattern, ELSE check for Pattern
+#### IF Pattern present then check for Pattern, ELSE check for Pattern
 * Here's a more complex example `/frodo/ ? /ring/ : /orcs/{ print "Either frodo with the ring, or the orcs" }`
 * `a?b:c` is a ternary operator. It reads: if a then do b, else do c.
 * Read it as:
@@ -853,7 +853,7 @@ BEGIN {print "BEGINNING"}
 * The actions are executed if: a record (line) contains either ("frodo" and the "ring") OR (no "frodo" and "ring") but "orcs". 
 
 
-### Pattern Range
+#### Pattern Range
 * How about this one? `/Shire/ , /Osgiliath/ { print $0 }`?
 * The comma separated regex expressions are a "pattern range". 
 * Read this as:
@@ -876,7 +876,7 @@ This Osgiliath is to drab for me.
 ```
 
 
-### BEGIN Pattern
+#### BEGIN Pattern
 * You'll be interested in this one. `BEGIN {print "And so it begins"}`
 * BEGIN is a special pattern, triggered right at the beginning, before any input from files is read.
 * NOTE - BEGIN will execute it's command even if no files are passed
@@ -884,7 +884,7 @@ This Osgiliath is to drab for me.
 >> Before any input is read
 >>> Print "And so it beggins"
 
-### END Pattern
+#### END Pattern
 * If something begins, it has to end, right? `END {print "There and back, by Bilbo Baggins"}`
 * END is triggered when awk has finished reading input from all files. Thus it needs files passed to awk in ordered to be triggered
 * It reads:
@@ -892,32 +892,32 @@ This Osgiliath is to drab for me.
 >>> Print "There and back, by Bilbo Baggins"
 
 
-### BEGINFILE, ENDFILE Patterns
+#### BEGINFILE, ENDFILE Patterns
 * If you pass multiple files to awk - it will treat them as being one contiguous file. But what if you want to call some commands when beginning to read input from a file? You use BEGINFILE and ENDFILE respectively.
 * `BEGINFILE {print "A new chapter is beginning mister Frodo"}`
 * It reads:
 >> Before input is read from a file
 >>> print "A new chapter is beginning mister Frodo"
 
-### NO Pattern
+#### NO Pattern
 * This a simple one. `{print $1}`. 
 * When no pattern is provided, just the command in curly braces, it is executed for all records (lines).
 * This reads
 >> For all records (lines):
 >>> print the first word
 
-### Conditional Pattern
+#### Conditional Pattern
 * `NF>4{print}`
 * The pattern is `NF>4`. If true then exec commands inside curly braces.
 * NF is the Number of Fields(words). If the current record (line) has more than 4 fields (words), print the record (line)
 
 
 
-### About commands
+#### About commands
 * All commands MUST be inside curly braces. You can't just call `print $0`. You have to put that command inside curly braces - `{print $0}`
 
 
-### Variables
+#### Variables
 * Awk has some built in variables. They are written in uppercase. 
 * They can be useful in a variety of cases. 
 * `FILENAME` is the name of the current file being processed. 
@@ -928,7 +928,7 @@ This Osgiliath is to drab for me.
 * If you want to refer to record (line) count for file you would use FNR. F - from File. File Number Record. 
 * In the case above NR would be 13 but FNR would be 3. 
 
-### More Variables
+#### More Variables
 * Here's a list of the most important variables with a short description
 * `FILENAME` - name of file
 * `FNR` - File Number Record (input record number for current file -  according to official docs). File record (line) count.
@@ -943,7 +943,7 @@ BEGIN {IGNORECASE=1}
 * `RS` - Record Separator. A newline by default.
 
 
-### Programming intro
+#### Programming intro
 * Awk is a full blown programming language. It has all the operators & syntax you would expect from a "regular" programming language such as C or python. 
 * This is taken directly from the manual
 ```
@@ -1007,7 +1007,7 @@ BEGIN {IGNORECASE=1}
 ```
 
 
-### Programming usage
+#### Programming usage
 * Here's how you could use the "programming" part of awk:
 ```
 #!/usr/bin/awk -f
@@ -1038,7 +1038,7 @@ END {
 * After processing all the records print a message with value of our custom variable "hobitses".
 
 
-### Options
+#### Options
 * You can pass options to awk. Here are some useful ones:
 * `-f` read awk source file. `awk -f source.awk file.txt`. You put all awk code in the source.awk file. NOTE - don't put the shebang (`#!/usr/bin/awk -f`)
 * `-F` - field separator. Use to define "words". For example if you have a .csv you could make the separator a comma. Like this: `awk -F, '{print $2} file.txt ' - will print the second "word" separated by comma.
@@ -1046,11 +1046,11 @@ END {
 * `-e` - execute commands. Use multiple awk commands. Eg: `awk -e 'BEGIN {IGNORECASE=1}' -e '/bilbo/{"Found him"}'`
 
 
-### String concatenation
+#### String concatenation
 * `print "hello" "world"` will output "helloworld". No space between.
 * `print "hello","world"` will output "hello world". A space between by using a comma in print.
 
-### System commands
+#### System commands
 * You can execute system commands like so `awk '{system("ls "$1" -la")}' file.txt `.
 * Let's break it down. We start by calling the system function on every record (line). We pass an argument built dynamically. "ls " followed by the first field (word) followed by " -l". If the field was "myfile.txt" the command would be "ls myfile.txt -la"
 * note the spaces at the end in "ls ". If you don't put the space the command would look like "lsmyfile.txt -la" which won't work obviously. 
@@ -1063,13 +1063,13 @@ END {
 * Basically we run `ls` on the first word of every file passed to awk.
 
 
-### Writing dynamically to files
+#### Writing dynamically to files
 * If you find a certain pattern you might like to write that to a file (with some extra info maybe).
 * `awk '/Bilbo/{print "I found him. First word is " $1 >> "appended.txt"}' file.txt `. It will append the print message (followed by first field(word)) to the file appended.txt
 * Use '>' instead of '>' to overwrite the file (instead of appending)
 
 
-### System commands with stdin
+#### System commands with stdin
 * You can pipe with print into certain system commands. Here's an example `awk '{print "file.txt" | "xargs -n1 ls -l"}'`
 * "file.txt" is piped into the command "xargs -n1 ls -l". Similar to `echo "file.txt" | xargs -n ls -l`
 * The advantage is that you can pass "dynamic" arguments. Certain fields (words) for example.
@@ -1078,7 +1078,7 @@ END {
 -rw-rw-r-- 1 me me 0 Nov 14 17:40 file.txt
 ```
 
-### Getline example
+#### Getline example
 * `"date" | getline cur_date` - run "date", store into variable cur_date. This a simple use for getline.
 * Here's a cooler one `awk '{"du "$0" |cut -f1" |getline cur_size;print "for file " $0 " size is " cur_size}' filenames.txt`
 * Let's break it down. "du "$0" |cut -f" will look like "du myfile.txt | cut -f1". This linux command will output the size of the file in kb.
@@ -1086,18 +1086,18 @@ END {
 * We use a semicolon to separate commands. Next we print the value of the variable "cur_size"
 
 
-### $ - the positional variable
+#### $ - the positional variable
 * $ is not a "normal" variable but rather a function triggered by the dolar sign (according to grymoire awk tut)
 * `X=; print $X;` means `print $1`. 
 * You can do more fancy stuff with this. `'{print $(NF-1)}' - NF is the number of fields (words) in the record (line). `$NF` would be the last field (word) (if there are 5 fields NF is 5. $NF will point to the 5th field (word))
 
-### Modify the positional variable
+#### Modify the positional variable
 * You can modify a certain field (word) and print the record (line) containing that modified field.
 * `echo "Meat's back on the menu" | awk '{$5="NO_MENUS_IN_ORC_LAND";print}'` will output `Meat's back on the NO_MENUS_IN_ORC_LAND`
 * We assign a value to field number 5. Then we print the record (print with no arguments prints the current record, just like `$print $0`)
 
 
-### Selective .csv column print
+#### Selective .csv column print
 * You have a .csv in the form:
 ```
 city,area,population
@@ -1111,12 +1111,12 @@ Buenos Aires,800,102
 * Note the comma between the positional arguments. IF you remember `{print "a" "b"}` will output "ab". You need comma to separate by space, `{print "a","b"}`. 
 * You can get fancy and skip the header row of the csv with `awk -F, '{if (NR>1) print $1,$3}' cities.csv `. If Number Record is bigger than 1 (not the first) only then print. 
 
-### Custom field separator with OFS
+#### Custom field separator with OFS
 * `{print "a", "b"}` will output "a b". When a comma is present awk uses the output field separator (OFS) which is a space by default.
 * You can change OFS to something else, like `::` for example. `{OFS="::";print "a", "b"}` will output `a::b`
 
 
-### Mix with command line text
+#### Mix with command line text
 * Let's say you have a file produced by the `ls` command, like this:
 ```
 drwxr-xr-x  2 root root        69632 Nov 13 19:21 .
@@ -1132,7 +1132,7 @@ drwxr-xr-x 16 root root         4096 Nov  9 07:35 ..
 * you want to print the name of the executable but only if it's smaller than 50 bytes. Use this `awk '{if ($5<50) print $9}' bin_10 `
 * If the fifth field (containing size in bytes) is smaller than 50 print the 9th field (name of executable)
 
-### Math on text.
+#### Math on text.
 * This is one of the cool things about awk. You can take some text, perform all kinds of programming magic on it, spit it out nice and modified. Usually you need to write a lot of boilerplate if you're using a general scripting language like python. 
 * Let's take the cities .csv again:
 ```
@@ -1175,7 +1175,7 @@ Total Population: 303000
 * With a bit of care we could cram it on 1/2 lines in the terminal. 
 
 
-### Fancy line numbers
+#### Fancy line numbers
 * Look at this beaut: `awk '{print "(" NR ")" ,$0}' f1`
 * It will print the line number in parenthesis followed by the actual line (from a file that doesn't have line numbering). Something like :
 ```
@@ -1185,7 +1185,7 @@ Total Population: 303000
 * Carefully study the spaces and commas from print. We know that by not using a command strings will be concatenated without any separator in between. So `"(" NR ")"` will output something like `(9)`. We could even dispense with the spaces in the command (`"("NR")"`) but I've kept them because they make things clearer. Next we print the actual line. Note the comma. It means awk will put a space (OFS) between the parenthesised line number and the actual line.
 
 
-### Print words by their number 
+#### Print words by their number 
 * It's time to get fancy and change Field Separator and Record separator.
 * By default RS is a newline. What happens if you change it into an empty string? 
 * Vim  will load all the file in memory and treat it as a single record. 
@@ -1216,7 +1216,7 @@ seventh
 * You can put this on a one liner and use it daily: `awk 'BEGIN{RS=""}{print $1020}' file.txt `
 
 
-### Pass stdin to awk (and show nicely formatted size of files)
+#### Pass stdin to awk (and show nicely formatted size of files)
 * `ls -lh | awk '{print $9,"has size of",$5}'`
 * Generate text with `ls -lh` that looks something like:
 ```
@@ -1228,17 +1228,17 @@ seventh
 
 
 
-### Pass both stdin and file to awk
+#### Pass both stdin and file to awk
 * `echo "Coming from stdin" | awk "{print}" file.txt -`
 * In the above command awk first processes file.txt then stdin (passed by using the final dash)
 
 
-### Check if text coming from stdin or file
+#### Check if text coming from stdin or file
 * `{ if (FILENAME!="-") print $0 }` it's the script.
 * When you pass it both stdin and files  `echo "Coming from stdin" | awk "{print}" file.txt -` awk won't process text from stdin.
 
 
-### Arrays intro
+#### Arrays intro
 * `{myarr=["one","two","three"]}` - WON'T work, even though this is the syntax used by many languages to declare arrays
 * Use instead something like `{myarr[0]="one";myarr[1]="two"}` 
 * Arrays are associative. You associate an index with a value. Like a dictionary.
@@ -1252,7 +1252,7 @@ seventh
 * As you can see you can use strings and numbers as an index (as a key). In the end though array subscripts are always strings. 
 * That is `{print myarr[5.1]}` will check for an '5.1' string index. 
 
-### Store lines in array
+#### Store lines in array
 ```
 #!/usr/bin/awk -f
 /bilbo/ {
@@ -1278,12 +1278,12 @@ bilbo again and frodo
 * Note how this array is not contiguous. It is sparse. The indexes between 0-3 and 3-13 don't exist and are not assigned automatically. Kinda make sense since awk uses strings and NOT integers as indexes/subscripts.
 
 
-### Delete array elems
+#### Delete array elems
 * `{delete myarr[1]}` will delete element at index '1' (where '1' is a string). 
 * `{delete myarr}` - will delete ALL elements of the array
 
 
-### Array index concatenation
+#### Array index concatenation
 ```
 #!/usr/bin/awk -f
 BEGIN{
@@ -1310,7 +1310,7 @@ at index 12 value is one
 * Another thing to note is that the 'for..in' loop doesn't enumerate elems in the order they were added. 
 
 
-### Ordered array indexes
+#### Ordered array indexes
 ```
 #!/usr/bin/awk -f
 BEGIN{
@@ -1335,7 +1335,7 @@ at index 1 value is bilbo again and frodo and orcs
 * For every record that matches `/bilbo/` store the line. Use current value of 'i' as index and increment it afterwards. 
 * At the end use a for loop to enumerate. 'i' now has a value of the array size. We use the new variable 'j' to enumerate and check against 'i' which is array size.
 
-### The power of printf
+#### The power of printf
 `{printf("%d is nice but %.2f is better",1,2)}`
 * will output:
 `1 is nice but 2.00 is better`
@@ -1431,7 +1431,7 @@ The printf Statement
 ```
 
 
-### Selective file processing
+#### Selective file processing
 * You can skip processing certain files using a combo of FILENAME and nextfile command
 ```
 #!/usr/bin/awk -f
@@ -1445,12 +1445,12 @@ The printf Statement
 * 'nextfile' will start processing the next file immediately.
 
 
-### Skip records (lines) based on a certain condition
+#### Skip records (lines) based on a certain condition
 * ` awk '{if (NF>4) next; print}' file.txt`
 * If NF (Number of Fields) is bigger than 4 stop processing current input record and get the "next" one. Else print the record.
 * This will in effect print lines that have 4 or less fields (words)
 
-### Some math funcs
+#### Some math funcs
 ```
 {
 	print "log",log($1),$2
@@ -1461,7 +1461,7 @@ The printf Statement
 ```
 * Pretty self explanatory math funcs. rand() will print a rand float between 0 and 1.
 
-### Print some random integers (1000 rand ints between 0-100)
+#### Print some random integers (1000 rand ints between 0-100)
 ```
 #!/usr/bin/awk -f
 BEGIN {
@@ -1470,7 +1470,7 @@ for (i=0; i<1000; i++) printf("%d\n",rand()*100)
 ```
 * We create random ints between 1 and 100 by multiplying the rand float (between 0-1) with 100 and cutting off the digits by using a `%d` (decimal) in printf, which treats any numbers as ints (an cuts the digits)
 
-### String funcs - index
+#### String funcs - index
 ```
 #!/usr/bin/awk -f
 {
@@ -1481,7 +1481,7 @@ for (i=0; i<1000; i++) printf("%d\n",rand()*100)
 ```
 * the 'index()' func searches for the index  of the second string ("bilbo") in the first string (the current record/line). If none found it returns 0.
 
-### String funcs - length
+#### String funcs - length
 * very basic but very much needed functionality - the length of a string.
 * `awk '{print "[",$0,"]","has length of",length($0)}' file.txt` outputs something like:
 ```
@@ -1490,7 +1490,7 @@ for (i=0; i<1000; i++) printf("%d\n",rand()*100)
 [ a story by frodo and bilbo with ring ] has length of 36
 ```
 
-### String funcs - split
+#### String funcs - split
 * Split a string into parts based on a separator (regex or string).
 ```
 #!/usr/bin/awk -f
@@ -1517,7 +1517,7 @@ TOTAL splits: 8
 * The function returns the number of splits (in the 'n') variable. It returns the split string components in the array "array" passed as argument. 
 
 
-### String funcs - substr
+#### String funcs - substr
 ```
 #!/usr/bin/awk -f
 BEGIN {
@@ -1535,7 +1535,7 @@ BEGIN {
 * Use it in a one-liner to print the first X chars of every line ` awk '{print substr($0,1,10)}' file.txt`
 
 
-### String funcs - gensub
+#### String funcs - gensub
 ```
 #!/usr/bin/awk -f
 BEGIN {
@@ -1553,18 +1553,18 @@ BEGIN {
 
 
 
-### String func - gsub
+#### String func - gsub
 * gsub is similar to gensub but has some diffs. It doesn't take the flag argument and replaces globally by default. It also performs search & replace directly on the target string. It returns the number of substitutions (whereas gensub() returns the modified string)
 * This make it very useful for modifying records nicely and rapidly. 
 * `awk '{gsub(/bilbo/,"MASTER BILBO");print}' file.txt` will search for `/bilbo/` on the current record (line) and replace it with "MASTER BILBO". 
 
 
-### String func - sub
+#### String func - sub
 * Just like gsub() but only replaces the FIRST occurrence.
 * `awk '{sub(/bilbo/,"MASTER BILBO");print}' file.txt` will search for `/bilbo/` on the current record (line) and replace it with "MASTER BILBO", just the FIRST occurrence on the record
 
 
-### String func - match
+#### String func - match
 * Returns 0 if a match is not found, otherwise the starting index for the match (index STARTING AT 1, not 0)
 * Look at this:
 ```
@@ -1581,15 +1581,15 @@ BEGIN {
 * It returns the index for `/bilbo/` in current record. If bigger than 0 then get a substring (from 'i' to 'i'+5)
 
 
-### String func - tolower
+#### String func - tolower
 * `echo "My Precious!" | awk '{print tolower($0)}'` 
 * Will output `my precious!`
 
-### String func - toupper
+#### String func - toupper
 * `echo "My Precious!" | awk '{print toupper($0)}'` 
 * Will output `MY PRECIOUS!`
 
-### String func - asort
+#### String func - asort
 * Sorting an array of numbers or string might come in hand.
 ```
 #!/usr/bin/awk -f
@@ -1619,7 +1619,7 @@ BEGIN {
 92.4046
 ```
 
-### Time func - strftime
+#### Time func - strftime
 * ` awk 'BEGIN {print strftime("%a %b %e %H:%M:%S %Z %Y")}' will output `Sun Nov 14 15:09:56 EET 2021`
 * Here's the format specifiers (taken from grymoire.com). (The man has some format specifiers but it's not this complete)
 ```
@@ -1648,7 +1648,7 @@ BEGIN {
 ```
 
 
-### Extract the inverse of a regex match
+#### Extract the inverse of a regex match
 * When you use match() func and get an actual match you'll modify RSTART and RLENGTH. These are 2 built in awk vars that signify the start and the length of the match.
 * You can use these vars to extract the inverse of a regex match. This might come handy in certain advanced scenarios. 
 ```
@@ -1677,7 +1677,7 @@ a story by frodo and  | bilbo |  with ring with bilbo
 * 'aft' is the substring after the match. We cut it from the end of the match up to the end. Note how we use "RSTART+RLENGTH" to calculate the first char AFTER the end of the match. This it's a bit confusing with indexing starting from 1. If you're used to 0 indexing you would want to add a 1 ("RSTART+RLENGTH+1") but it's not needed here because indexing starts at 1.
 * Note the comments starting with `#`  
 
-### Put all lines on one line
+#### Put all lines on one line
 * Check out this wacky oneliner `awk '{a=a $0}END{print a}' file.txt`
 * It will concatenate all lines on a single line (without any separators between lines). 
 * Here's how it works. We start by declaring a variable a. Simply using it will make it uninitialized the first time awk encounters the variable name. Uninitialized variables have a value of "". You can use whatever var name you like, I used "a" because it's short and simple.
@@ -1687,7 +1687,7 @@ a story by frodo and  | bilbo |  with ring with bilbo
 
 
 
-### User declared funcs
+#### User declared funcs
 ```
 
 #!/usr/bin/awk -f
@@ -1727,7 +1727,7 @@ if (match($0,"frodo")){
 * Do the same for "frodo"
 * The output will look like: `the  ring throw status is  THROWN`
 
-### More about conditional patterns
+#### More about conditional patterns
 * Conditional patterns are powerful and succint. We can use them to check for certain conditions before executing any commands inside curly braces.
 * `NF>4{print}` is equivalent to `{if(NF>4)print}`. As you can see the first one is clearer and shorter. It uses a conditional pattern. If true, exec commands inside curly braces.
 * The second runs for every record and inside curly braces use a conditional 'if'. 
@@ -1737,26 +1737,26 @@ if (match($0,"frodo")){
 * We can replace match with the match operator - `~`. Like this: `NF>6 && $0~/bilbo {print}`. If Number of Fields bigger than 6 and we have a match of `/bilbo/` inside current record, print.
 
 
-### Advanced conditional patterns
+#### Advanced conditional patterns
 * Here's a mind blowing one: `awk 'NF==3,/bilbo/{print}' f1`. The comma signifies a range (as for pattern range). But we use a conditional pattern as the start of the range and a regex as the end of the range. Pretty powerful stuff. 
 * The line above will print before the first record where Number of Fields is 3 and up to (and including) the last record containing `/bilbo/`
 * Here's a simpler but highly useful oneliner `awk 'NF!=0{print} file.txt`. If Number of Fields different than 0, print. It will skip printing empty lines.
 * This one will make you oogle. `awk 'rand()>0.5{print}' file.txt`. It will print about half lines from 'file.txt', depending on the result of 'rand()'.
 
 
-### Print the first Nth lines of every file
+#### Print the first Nth lines of every file
 * `awk 'FNR<=5{print}' f1 f2 f3`
 * The line above will print the first 5 lines of every file passed to awk (without any separation between them). It uses a conditional pattern. If File Number Record smaller or equal to 5, print. 
 
 
-### Print until you encounter this pattern. Then move to next file.
+#### Print until you encounter this pattern. Then move to next file.
 * `awk '{if ($0~/bilbo/) nextfile;print}' f1 f2`.
 * Print records (lines) from current file until you encounter `/bilbo/` in current record (line). Then move to the next file (skipping the rest of the current file).
 * Do the same for the rest of the files.
 * It will NOT print the line containing `/bilbo/`. 
 
 
-### Print every Nth line of file
+#### Print every Nth line of file
 * `awk '{getline;print}' file.txt` - print every second line of the file. 
 * Why? For every record start with `getline`. This command sets '$0' from the next input record - it basically reads the next line into '$0'. Print then prints the newly updated '$0'
 * `awk '{getline;getline;print}' file.txt` - print every third line of the file. We consume two lines then print the third one. And so on. Add more `getline` to increase `Nth` printing.

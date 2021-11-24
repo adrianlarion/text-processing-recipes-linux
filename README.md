@@ -16,6 +16,8 @@ Featuring: `vim, tr, cat, tac, sort, shuf, seq, pr, paste, fmt, cut, nl, split, 
 [Sed & Awk - Dale Dougherty & Arnold Robbins](https://amzn.to/3kKck7Y)
 <br>
 [Effective awk programming - by Arnold Robbins](https://amzn.to/30scfhM)
+<br>
+[convenient-utils-linux](https://github.com/adrianscheff/convenient-utils-linux) - Linux utils to make life easier and more convenient. 
 
 
 # Basic Regex.
